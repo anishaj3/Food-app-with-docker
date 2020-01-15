@@ -14,6 +14,8 @@ services:
     restart: always
     network_mode: host
     container_name: userapp-docker
+    depends_on:
+      - movie-mysql
     ports:
       - 8089:8089
   favouriteapp:
@@ -21,6 +23,8 @@ services:
     restart: always
     network_mode: host
     container_name: favouriteapp-docker
+    depends_on:
+      - movie-mysql
     ports:
       - 8082:8082
   angular:
