@@ -10,14 +10,14 @@ services:
       MYSQL_USER_NAME: app_root
       MYSQL_PASSWORD: root123
   userapp:
-    image: anishajayaraj/nutritionist:userservice-image
+    image: anishajayaraj/nutritionist:user-service-image
     restart: always
     network_mode: host
     container_name: userapp-docker
     ports:
       - 8089:8089
   favouriteapp:
-    image: anishajayaraj/nutritionist:favouriteservice-image
+    image: anishajayaraj/nutritionist:fav-service-image
     restart: always
     network_mode: host
     container_name: favouriteapp-docker
