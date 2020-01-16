@@ -4,8 +4,6 @@ spring:
     username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
   jpa:
-    database:
-      driverClassName: org.hibernate.dialect.MYSQL5InnoDBDialect
     hibernate:
       ddl-auto: update
 server:
