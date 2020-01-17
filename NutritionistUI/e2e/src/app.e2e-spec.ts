@@ -47,11 +47,12 @@ describe('Nutritionist Front end App', () => {
     browser.element(by.buttonText('Search')).click();
     expect(browser.getCurrentUrl()).toContain('food/search');
     browser.element(by.id('search-button-input')).sendKeys('carrot');
-    browser.element(by.id('search-button-input')).sendKeys(protractor.Key.ENTER);
+    var enter= browser.element(by.id('search-button-input')).sendKeys(protractor.Key.ENTER);
+    browser.driver.sleep(10000000000);
     const searchItems = browser.element.all(by.css('.food-title'));
     expect(searchItems.count()).toBeGreaterThan(10);
     for (let i =0; i<2; i++) {
-      expect(searchItems.get(i).getText()).toContain('Super');
+     expect(searchItems.get(i).getText()).toContain('Branded Food Products Database');
     }
   });
 
@@ -64,16 +65,27 @@ describe('Nutritionist Front end App', () => {
   });
 
 it('should be able to delete food from favourite',async () => {
-    browser.element(by.buttonText('favourite')).click();
+    browser.element(by.buttonText('Favourite')).click();
     expect(browser.getCurrentUrl()).toContain('/favourite');
     const searchItems = browser.element.all(by.css('.food-title'));
     expect(searchItems.count()).toBe(1);
     browser.element(by.buttonText('Delete')).click();
     expect(searchItems.count()).toBe(0);
   });
-
+   it('should be able get details of food ',async () => {
+    browser.element(by.buttonText('Search')).click();
+    expect(browser.getCurrentUrl()).toContain('food/search');
+    browser.element(by.id('search-button-input')).sendKeys('carrot');
+    var enter= browser.element(by.id('search-button-input')).sendKeys(protractor.Key.ENTER);
+    browser.driver.sleep(10000000000);
+    browser.element(by.buttonText('Details')).click();
+    expect(browser.getCurrentUrl()).toContain('food/search/food-details');
+  });
   it('should be able to logout',async () => {
+    browser.driver.manage().window().maximize();
+    browser.driver.sleep(1000);
     browser.element(by.buttonText('Logout')).click();
+    browser.driver.sleep(10000000);
     expect(browser.getCurrentUrl()).toContain('/login');
   });
 });
